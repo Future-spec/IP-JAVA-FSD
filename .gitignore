@@ -1,0 +1,15 @@
+# Node
+node_modules/
+
+# Java/Maven
+IP-JAVA-FSD/company/target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

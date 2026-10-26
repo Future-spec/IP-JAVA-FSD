@@ -3,10 +3,6 @@ const path = require('node:path');
 
 const apiBaseUrl = (process.env.API_BASE_URL || '').replace(/\/+$/, '');
 
-if (process.env.VERCEL && !apiBaseUrl) {
-    throw new Error('Set API_BASE_URL in Vercel to the deployed Node API origin.');
-}
-
 if (apiBaseUrl && !/^https?:\/\/.+/.test(apiBaseUrl)) {
     throw new Error('API_BASE_URL must be an absolute HTTP or HTTPS URL.');
 }

@@ -11,7 +11,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     port: 3307, // Default MySQL port
     user: 'root', // Replace with your MySQL username
-    password: 'qwerasdf', // Replace with your MySQL password
+    password: process.env.DB_PASSWORD, // Configure this through the runtime environment
     database: 'company'
 });
 

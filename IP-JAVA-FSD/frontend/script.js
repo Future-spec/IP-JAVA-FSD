@@ -1,6 +1,5 @@
-// Define API Base URL. 
-// Use 3000 for Node.js API or 8080 for Spring Boot API
-const API_URL = 'http://localhost:3000/api/employees'; 
+const apiBaseUrl = (window.APP_CONFIG?.apiBaseUrl || 'http://localhost:3000').replace(/\/+$/, '');
+const API_URL = `${apiBaseUrl}/api/employees`;
 
 // 1. Load Employees on page load
 document.addEventListener('DOMContentLoaded', fetchEmployees);

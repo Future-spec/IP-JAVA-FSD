@@ -211,7 +211,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     port: 3306, <span class="comment">// Default MySQL port</span>
     user: 'root', <span class="comment">// Replace with your MySQL username</span>
-    password: 'password', <span class="comment">// Replace with your MySQL password</span>
+    password: process.env.DB_PASSWORD,
     database: 'company'
 });
 

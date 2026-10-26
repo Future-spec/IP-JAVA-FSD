@@ -167,7 +167,7 @@
             <pre><code><span class="comment"># Database Connection</span>
 spring.datasource.url=jdbc:mysql://localhost:3306/company
 spring.datasource.username=root
-spring.datasource.password=password
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
 
 <span class="comment"># Hibernate & JPA properties</span>
 spring.jpa.hibernate.ddl-auto=update

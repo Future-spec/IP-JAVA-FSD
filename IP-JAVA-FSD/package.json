@@ -6,19 +6,25 @@
   "directories": {
     "doc": "docs"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
+    "build": "node build-frontend.js",
+    "dev": "node --env-file=.env backend/app.js",
+    "start": "node backend/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ciaindia/tcet-aug-2026.git"
+    "url": "https://github.com/Future-spec/IP-JAVA-FSD.git"
   },
   "keywords": [],
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/ciaindia/tcet-aug-2026/issues"
+    "url": "https://github.com/Future-spec/IP-JAVA-FSD/issues"
   },
-  "homepage": "https://github.com/ciaindia/tcet-aug-2026#readme",
+  "homepage": "https://github.com/Future-spec/IP-JAVA-FSD#readme",
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
@@ -26,5 +32,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
+  },
+  "overrides": {
+    "body-parser": "^2.4.0"
   }
 }

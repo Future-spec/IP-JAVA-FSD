@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+target/
+.vercel/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+!.env.example
+frontend/config.js
+**/.github/modernize/

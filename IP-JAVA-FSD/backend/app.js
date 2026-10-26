@@ -3,23 +3,33 @@ const mysql = require('mysql2');
 const cors = require('cors');
 
 const app = express();
-app.use(cors()); // Enable CORS for all origins
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5500')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+app.use(cors({
+    origin: (origin, callback) => callback(null, !origin || allowedOrigins.includes(origin))
+}));
 app.use(express.json()); // Middleware to parse JSON bodies
 
-// MySQL Connection Configuration
+const requiredDatabaseVariables = ['DB_HOST', 'DB_USER', 'DB_PASSWORD', 'DB_NAME'];
+const missingDatabaseVariables = requiredDatabaseVariables.filter((key) => !process.env[key]);
+if (missingDatabaseVariables.length > 0) {
+    throw new Error(`Missing required database configuration: ${missingDatabaseVariables.join(', ')}`);
+}
+
 const db = mysql.createConnection({
-    host: 'localhost',
-    port: 3306, // Default MySQL port
-    user: 'root', // Replace with your MySQL username
-    password: '26062023', // Replace with your MySQL password
-    database: 'company'
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT || 3306),
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
-// Connect to the database
 db.connect((err) => {
     if (err) {
-        console.error('Error connecting to MySQL:', err);
-        return;
+        console.error('Error connecting to MySQL:', err.message);
+        process.exit(1);
     }
     console.log('Successfully connected to the MySQL database.');
 });
@@ -81,7 +91,7 @@ app.delete('/api/employees/:id', (req, res) => {
 });
 
 // Start the server
-const PORT = 3000;
+const PORT = Number(process.env.PORT || 3000);
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
